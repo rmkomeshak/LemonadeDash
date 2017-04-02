@@ -10,7 +10,8 @@ package lemonadedash;
  * @author Ryan
  */
 public class UserInventory {
-    private int cups, lemons, ice, sugar, money;
+    private int cups, lemons, ice, sugar;
+    private double money = 20;
     
     public UserInventory(){
         cups = 0;
@@ -36,7 +37,7 @@ public class UserInventory {
         sugar = x;
     }
     
-    public void setMoney(int x){
+    public void setMoney(double x){
         money = x;
     }
     
@@ -56,7 +57,7 @@ public class UserInventory {
         return sugar;
     }
     
-    public int getMoney(){
+    public double getMoney(){
         return money;
     }
     
