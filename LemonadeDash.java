@@ -15,20 +15,36 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 public class LemonadeDash extends Application {
+    Pane cur_pane = new Pane();
+    Scene scene;
     
     private STATE state = STATE.STORE;
+    Button cont = new Button("Continue");
     
     StoreScreen store = new StoreScreen();
+    RecipeScreen recipe = new RecipeScreen();
     
     public Pane initStore(){
+        cont.setOnAction(e->{
+            state = STATE.RECIPE;
+            scene.setRoot(initRecipe());
+        });
+        
         return store.initScreen();
+    }
+    
+    public Pane initRecipe(){
+        return recipe.initScreen();
     }
     
     @Override
     public void start(Stage primaryStage) {
+        cur_pane = initStore();
+        cont.setTranslateX(350);
+        cont.setTranslateY(350);
+        cur_pane.getChildren().add(cont);
         
-        Scene scene = new Scene(initStore(), 800, 600);
-        
+        scene = new Scene(cur_pane, 800, 600);
         primaryStage.setTitle("Lemonade Dash");
         primaryStage.setScene(scene);
         primaryStage.show();
