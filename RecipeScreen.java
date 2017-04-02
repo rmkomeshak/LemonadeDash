@@ -50,6 +50,7 @@ public class RecipeScreen extends Node{
         purchase.setAlignment(Pos.TOP_CENTER);
         
         drawText();
+        drawButtons();
         
         recipe.getChildren().add(layout);
     }
@@ -62,19 +63,22 @@ public class RecipeScreen extends Node{
         title.setTranslateY(50);
         title.setFont(Font.font("Calibri", 50));
         
-        Text subtitle1 = formatText("Lemons per pitcher: ", "Calibri",15, 200, 120);
-        Text subtitle2 = formatText("Sugar per pitcher:", "Calibri", 15, 200, 130);
-        Text subtitle3 = formatText("Ice per Cup:", "Calibri", 15, 200, 140);
-        Text subtitle4 = formatText("Price per Cup:", "Calibri", 15, 200, 150);
+        Text subtitle1 = formatText("Lemons per pitcher: ", "Calibri",27, 200, 120);
+        Text subtitle2 = formatText("Sugar per pitcher:", "Calibri", 27, 200, 130);
+        Text subtitle3 = formatText("Ice per Cup:", "Calibri", 27, 200, 140);
+        Text subtitle4 = formatText("Price per Cup:", "Calibri", 27, 200, 150);
             
         TextField subtitle5= formatTextField(50, 200, 120);
         TextField subtitle6= formatTextField(50, 200, 130);
         TextField subtitle7= formatTextField(50, 200, 140);
         TextField subtitle8= formatTextField(50, 200, 150);
-        Text subtitle9 = formatText("Lemons ", "Calibri",5, 35, 120);
-        Text subtitle10= formatText("Cups", "Calibri",5, 35, 120);
-        Text subtitle11 = formatText("Cubes ", "Calibri",5, 35, 120);
-        Text subtitle12 = formatText("Cent", "Calibri",5, 35, 120);
+        
+        Text subtitle9 = formatText("Lemons ", "Calibri",20, 485, 97);
+        Text subtitle10= formatText("Cups", "Calibri",20, 460, 107);
+        Text subtitle11 = formatText("Cubes ", "Calibri",20, 395, 117);
+        Text subtitle12 = formatText("Cent", "Calibri",20, 415, 127);
+        
+        
         
         HBox lemon_box = new HBox();
         lemon_box.getChildren().addAll(subtitle1, subtitle5);
@@ -87,8 +91,20 @@ public class RecipeScreen extends Node{
         
         HBox price_box = new HBox();
         price_box.getChildren().addAll(subtitle4, subtitle8);
+        
+        HBox lemons = new HBox();
+        lemons.getChildren().addAll(subtitle9);
+        
+        HBox cups = new HBox();
+        cups.getChildren().addAll(subtitle10);
+        
+        HBox cubes = new HBox();
+        cubes.getChildren().addAll(subtitle11);
+        
+        HBox cent = new HBox();
+        cent.getChildren().addAll(subtitle12);
        
-        purchase.getChildren().addAll(lemon_box, sugar_box, ice_box, price_box);
+        purchase.getChildren().addAll(lemon_box, lemons, sugar_box, cups, ice_box, cubes,  price_box, cent);
         layout.getChildren().addAll(title, purchase);
         
         
@@ -111,6 +127,13 @@ public class RecipeScreen extends Node{
        
        return tf;
     }
+    
+     public void drawButtons()
+     {
+        Button begin_day = new Button ("Begin Day");
+        begin_day.setTranslateY(200);
+        purchase.getChildren().add(begin_day);
+     }
     
     
 
