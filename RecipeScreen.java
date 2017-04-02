@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
+package lemonadedash;
 
 import com.sun.javafx.geom.BaseBounds;
 import com.sun.javafx.geom.transform.BaseTransform;
@@ -46,11 +46,8 @@ public class RecipeScreen extends Node{
         layout.setAlignment(Pos.TOP_CENTER);
     
         
-        purchase.setPrefSize(600,300);
+        purchase.setPrefSize(800, 600);
         purchase.setAlignment(Pos.TOP_CENTER);
-        
-        corner_info.setPrefSize(800,600);
-        corner_info.setAlignment(Pos.BOTTOM_LEFT);
         
         drawText();
         
@@ -65,33 +62,34 @@ public class RecipeScreen extends Node{
         title.setTranslateY(50);
         title.setFont(Font.font("Calibri", 50));
         
-        Text subtitle1 = formatText("Lemons per pitcher: ", "Calibri",15, 0, 120);
-        Text subtitle2 = formatText("Sugar per pitcher:", "Calibri", 15, 0, 130);
-        Text subtitle3 = formatText("Ice per Cup:", "Calibri", 15, 0, 140);
-        Text subtitle4 = formatText("Price per Cup:", "Calibri", 15, 0, 150);
+        Text subtitle1 = formatText("Lemons per pitcher: ", "Calibri",15, 200, 120);
+        Text subtitle2 = formatText("Sugar per pitcher:", "Calibri", 15, 200, 130);
+        Text subtitle3 = formatText("Ice per Cup:", "Calibri", 15, 200, 140);
+        Text subtitle4 = formatText("Price per Cup:", "Calibri", 15, 200, 150);
             
-        TextField subtitle5= formatTextField(5, 30, 60);
-        TextField subtitle6= formatTextField(5, 30, 70);
-        TextField subtitle7= formatTextField(5, 30, 80);
-        TextField subtitle8= formatTextField(5, 30, 90);
+        TextField subtitle5= formatTextField(50, 200, 120);
+        TextField subtitle6= formatTextField(50, 200, 130);
+        TextField subtitle7= formatTextField(50, 200, 140);
+        TextField subtitle8= formatTextField(50, 200, 150);
         Text subtitle9 = formatText("Lemons ", "Calibri",5, 35, 120);
         Text subtitle10= formatText("Cups", "Calibri",5, 35, 120);
         Text subtitle11 = formatText("Cubes ", "Calibri",5, 35, 120);
         Text subtitle12 = formatText("Cent", "Calibri",5, 35, 120);
         
-        Text money = formatText(("Money: $" + ui.getMoney()), "Calibri", 15, -350, 200);
+        HBox lemon_box = new HBox();
+        lemon_box.getChildren().addAll(subtitle1, subtitle5);
         
-        purchase.getChildren().add(subtitle1);
-        purchase.getChildren().add(subtitle2);
-        purchase.getChildren().add(subtitle3);
-        purchase.getChildren().add(subtitle4);
-        purchase.getChildren().add(subtitle5);
-        purchase.getChildren().add(subtitle6);
-        purchase.getChildren().add(subtitle7);
+        HBox sugar_box = new HBox();
+        sugar_box.getChildren().addAll(subtitle2, subtitle6);
+        
+        HBox ice_box = new HBox();
+        ice_box.getChildren().addAll(subtitle3, subtitle7);
+        
+        HBox price_box = new HBox();
+        price_box.getChildren().addAll(subtitle4, subtitle8);
        
-        
-        total.getChildren().addAll(purchase);
-        layout.getChildren().addAll(title, total, money);
+        purchase.getChildren().addAll(lemon_box, sugar_box, ice_box, price_box);
+        layout.getChildren().addAll(title, purchase);
         
         
     }
