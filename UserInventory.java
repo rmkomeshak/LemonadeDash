@@ -11,7 +11,9 @@ package lemonadedash;
  */
 public class UserInventory {
     private int cups, lemons, ice, sugar;
+    private String name;
     private double money = 20;
+    int day_choice;
     
     public UserInventory(){
         cups = 0;
@@ -41,6 +43,14 @@ public class UserInventory {
         money = x;
     }
     
+    public void setName(String n){
+        name = n;
+    }
+    
+    public void setDay(int d){
+        day_choice = d;
+    }
+    
     public int getCups(){
         return cups;
     }
@@ -59,6 +69,14 @@ public class UserInventory {
     
     public double getMoney(){
         return money;
+    }
+    
+    public String getName(){
+        return name;
+    }
+    
+    public int getDay(){
+        return day_choice;
     }
     
     

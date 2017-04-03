@@ -24,7 +24,7 @@ import javafx.scene.text.Text;
  *
  * @author Ryan
  */
-public class StoreScreen extends Node{
+public class StoreScreen extends Screen{
     Pane store = new Pane();
     VBox layout = new VBox();
     VBox owned = new VBox();
@@ -186,23 +186,23 @@ public class StoreScreen extends Node{
         sugar_owned.setText(ui.getSugar() + " Sugar");
     }
     
-    public Text formatText(String text, String font, int size, int x, int y){
+    /*public Text formatText(String text, String font, int size, int x, int y){
         Text temp = new Text(text);
         temp.setFont(Font.font(font, size));
         temp.setTranslateX(x);
         temp.setTranslateY(y);
         
         return temp;
-    }
+    }*/
     
-    public TextField formatTextField(int width, int x, int y){
+    /*public TextField formatTextField(int width, int x, int y){
        TextField tf = new TextField();
        tf.setPrefWidth(width);
        tf.setTranslateX(x);
        tf.setTranslateY(y);
        
        return tf;
-    }
+    }*/
     
     
 

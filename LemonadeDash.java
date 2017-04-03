@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
+package lemonadedash;
 
 import javafx.application.Application;
 import javafx.event.ActionEvent;
@@ -18,17 +18,15 @@ public class LemonadeDash extends Application {
     Pane cur_pane = new Pane();
     Scene scene;
     
-    private STATE state = STATE.STORE;
+    private STATE state = STATE.SETUP;
     Button cont = new Button("Continue");
     
     StoreScreen store = new StoreScreen();
     RecipeScreen recipe = new RecipeScreen();
+    SetupScreen setup = new SetupScreen();
     
     public Pane initStore(){
-        cont.setOnAction(e->{
-            state = STATE.RECIPE;
-            scene.setRoot(initRecipe());
-        });
+        
         
         return store.initScreen();
     }
@@ -37,9 +35,27 @@ public class LemonadeDash extends Application {
         return recipe.initScreen();
     }
     
+    public Pane initSetup(){
+        return setup.initScreen();
+    }
+    
     @Override
     public void start(Stage primaryStage) {
-        cur_pane = initStore();
+        
+        cont.setOnAction(e->{
+            if(state == STATE.SETUP){
+                state = STATE.STORE;
+                cur_pane = initStore();
+                cur_pane.getChildren().add(cont);
+                scene.setRoot(cur_pane);
+            }
+            else if(state == STATE.STORE){
+                state = STATE.RECIPE;
+                scene.setRoot(initRecipe());
+            }
+            
+        });
+        cur_pane = initSetup();
         cont.setTranslateX(350);
         cont.setTranslateY(350);
         cur_pane.getChildren().add(cont);

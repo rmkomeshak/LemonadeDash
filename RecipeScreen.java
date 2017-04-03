@@ -24,7 +24,7 @@ import javafx.scene.text.Text;
  *
  * @author Ryan
  */
-public class RecipeScreen extends Node{
+public class RecipeScreen extends Screen{
     Pane recipe = new Pane();
     VBox layout = new VBox();
     VBox purchase = new VBox();
@@ -63,7 +63,7 @@ public class RecipeScreen extends Node{
         title.setTranslateY(50);
         title.setFont(Font.font("Calibri", 50));
         
-        Text subtitle1 = formatText("Lemons per pitcher: ", "Calibri",27, 200, 120);
+        Text subtitle1 = formatText("Lemons per pitcher:", "Calibri",27, 200, 120);
         Text subtitle2 = formatText("Sugar per pitcher:", "Calibri", 27, 200, 130);
         Text subtitle3 = formatText("Ice per Cup:", "Calibri", 27, 200, 140);
         Text subtitle4 = formatText("Price per Cup:", "Calibri", 27, 200, 150);
@@ -108,24 +108,6 @@ public class RecipeScreen extends Node{
         layout.getChildren().addAll(title, purchase);
         
         
-    }
-    
-        public Text formatText(String text, String font, int size, int x, int y){
-        Text temp = new Text(text);
-        temp.setFont(Font.font(font, size));
-        temp.setTranslateX(x);
-        temp.setTranslateY(y);
-        
-        return temp;
-    }
-    
-    public TextField formatTextField(int width, int x, int y){
-       TextField tf = new TextField();
-       tf.setPrefWidth(width);
-       tf.setTranslateX(x);
-       tf.setTranslateY(y);
-       
-       return tf;
     }
     
      public void drawButtons()
