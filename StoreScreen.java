@@ -3,6 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+package lemonadedash;
 
 import com.sun.javafx.geom.BaseBounds;
 import com.sun.javafx.geom.transform.BaseTransform;
@@ -13,25 +14,29 @@ import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import lemonadedash.ScreenSwapper.STATE;
 
 /**
  *
  * @author Ryan
  */
 public class StoreScreen extends Screen{
-    Pane store = new Pane();
-    VBox layout = new VBox();
-    VBox owned = new VBox();
-    VBox purchase = new VBox();
-    HBox total = new HBox();
-    VBox corner_info = new VBox();
-    
-    TextField cup_amt, lemon_amt, ice_amt, sugar_amt;
+    private Pane store = new Pane();
+    private VBox layout = new VBox();
+    private VBox owned = new VBox();
+    private VBox purchase = new VBox();
+    private HBox total = new HBox();
+    private VBox corner_info = new VBox();
+    private ImageView title = new ImageView();
+    private TextField cup_amt, lemon_amt, ice_amt, sugar_amt;
     Text cups_owned, ice_owned, sugar_owned, lemons_owned, money;
     
     double cup_price = 0.1;
@@ -40,20 +45,21 @@ public class StoreScreen extends Screen{
     double ice_price = 0.05;
     
     int cup_input, lemon_input, sugar_input, ice_input;
-    Text title = new Text("STORE");
-    UserInventory ui = UserInventory.getInstance();
+    //Text title = new Text("STORE");
     
     
     public StoreScreen(){
         super();
-        
-        layout.setPrefSize(Scaling.windowWidth(), Scaling.windowHeight());
+        store.setId("pane");
+        store.getStylesheets().addAll(this.getClass().getResource("style.css").toExternalForm());
+        title.setImage(new Image("file:resource/image/store-title.png", 200, 100, true, true));
+        layout.setPrefSize(800,600);
         layout.setAlignment(Pos.TOP_CENTER);
         
-        owned.setPrefSize(Scaling.windowWidth(), Scaling.windowHeight());
+        owned.setPrefSize(600,300);
         owned.setAlignment(Pos.TOP_CENTER);
         
-        purchase.setPrefSize(Scaling.windowWidth(), Scaling.windowHeight());
+        purchase.setPrefSize(600,300);
         purchase.setAlignment(Pos.TOP_CENTER);
         
         drawText();
@@ -68,15 +74,15 @@ public class StoreScreen extends Screen{
     
     public void drawText(){
         title.setTranslateY(50);
-        title.setFont(Font.font("Calibri", 50));
+        //title.setFont(Font.font("Calibri", 50));
         
-        Text subtitle1 = formatText("Owned", "Calibri", 25, 0, 100);
-        Text subtitle2 = formatText("Purchase", "Calibri", 25, 0, 100);
+        Text subtitle1 = formatText("Owned", 25, 0, 100);
+        Text subtitle2 = formatText("Purchase", 25, 0, 100);
         
-        cups_owned = formatText((ui.getCups() + " Cups"), "Calibri", 15, 0, 120);
-        lemons_owned = formatText((ui.getLemons() + " Lemons"), "Calibri", 15, 0, 130);
-        sugar_owned = formatText((ui.getSugar() + " Sugar"), "Calibri", 15, 0, 140);
-        ice_owned = formatText((ui.getIce() + " Ice Cubes"), "Calibri", 15, 0, 150);
+        cups_owned = formatText((ui.getCups() + " Cups"), 15, 0, 120);
+        lemons_owned = formatText((ui.getLemons() + " Lemons"), 15, 0, 130);
+        sugar_owned = formatText((ui.getSugar() + " Sugar"), 15, 0, 140);
+        ice_owned = formatText((ui.getIce() + " Ice Cubes"), 15, 0, 150);
         
         HBox cups_purchase = new HBox();
         HBox lemons_purchase = new HBox();
@@ -88,10 +94,10 @@ public class StoreScreen extends Screen{
         sugar_amt = formatTextField(50, 100, 120);
         ice_amt = formatTextField(50, 100, 120);
         
-        Text cup_cost = formatText("  Cups ($0.10/each)", "Calibri", 15, 100, 120);
-        Text lemon_cost = formatText("  Lemons ($0.50/each)", "Calibri", 15, 100, 120);
-        Text sugar_cost = formatText("  Sugar ($1.00/each)", "Calibri", 15, 100, 120);
-        Text ice_cost = formatText("  Ice ($0.05/each)", "Calibri", 15, 100, 120);
+        Text cup_cost = formatText("  Cups ($0.10/each)", 15, 100, 120);
+        Text lemon_cost = formatText("  Lemons ($0.50/each)", 15, 100, 120);
+        Text sugar_cost = formatText("  Sugar ($1.00/each)", 15, 100, 120);
+        Text ice_cost = formatText("  Ice ($0.05/each)", 15, 100, 120);
         
         
         cups_purchase.getChildren().addAll(cup_amt, cup_cost);
@@ -100,7 +106,7 @@ public class StoreScreen extends Screen{
         ice_purchase.getChildren().addAll(ice_amt, ice_cost);
         
         
-        money = formatText(("Money: $" + ui.getMoney()), "Calibri", 15, -350, 200);
+        money = formatText(("Money: $" + ui.getMoney()), 15, -350, 200);
         
         owned.getChildren().addAll(subtitle1, cups_owned, lemons_owned, sugar_owned, ice_owned);
         purchase.getChildren().addAll(subtitle2, cups_purchase, lemons_purchase, sugar_purchase, ice_purchase);
@@ -111,9 +117,15 @@ public class StoreScreen extends Screen{
     
     public void drawButtons(){
         Button buy = new Button("Buy");
+        Button next = new Button("Next");
+        buy.setId("record-sales");
         buy.setTranslateY(150);
         purchase.getChildren().add(buy);
+        layout.getChildren().add(next);
         
+        next.setOnAction(e->{
+            ScreenSwapper.getInstance().setState(STATE.RECIPE);
+        });
         //TODO: LIMIT INPUT: NO CHARACTERS, NO STRINGS, NO NEGATIVES
         buy.setOnAction(e -> {
             System.out.println(ui.getName());

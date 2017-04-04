@@ -10,10 +10,9 @@ package lemonadedash;
  * @author Ryan
  */
 public class UserInventory {
-    private int cups, lemons, ice, sugar;
+    private int cups, lemons, ice, sugar, day;
     private String name;
     private double money = 20;
-    int day_choice;
     private static volatile UserInventory instance;
 
     private UserInventory(){
@@ -58,7 +57,7 @@ public class UserInventory {
     }
     
     public void setDay(int d){
-        day_choice = d;
+        day= d;
     }
     
     public int getCups(){
@@ -86,7 +85,7 @@ public class UserInventory {
     }
     
     public int getDay(){
-        return day_choice;
+        return day;
     }
     
     

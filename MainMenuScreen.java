@@ -20,14 +20,14 @@ import javafx.scene.text.Text;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import lemonadedash.ScreenSwapper.STATE;
 
 /**
  *
  * @author kmgauthier
  */
 public class MainMenuScreen extends Screen{
-    Pane setup = new Pane();
-    
+     Pane setup = new Pane();
      private GridPane gpane;
      //private Pane pane;
      //private Label welcome;
@@ -75,21 +75,17 @@ public class MainMenuScreen extends Screen{
         
         
         newGame.setOnAction(e->{
-            //go to Setup screen
-            gpane.setVisible(false);
-            new SetupScreen();
+            ScreenSwapper.getInstance().setState(STATE.SETUP);
         });
         
         leaderboard.setOnAction(e->{
             //go to Leaderboard screen
-            gpane.setVisible(false);
-            new LeaderboardScreen();
+            ScreenSwapper.getInstance().setState(STATE.HIGHSCORES);
         });
         
         options.setOnAction(e->{
             //go to options screen
-            gpane.setVisible(false);
-            new OptionsScreen();
+            ScreenSwapper.getInstance().setState(STATE.OPTIONS);
         });
         
         quit.setOnAction(e->{

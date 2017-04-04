@@ -15,6 +15,7 @@ import javafx.scene.text.Text;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import lemonadedash.ScreenSwapper.STATE;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -57,19 +58,18 @@ public class OptionsScreen extends Screen {
         
         gpane.add(title, 0, 0);
         //gpane.getChildren().add(header);
-        gpane.add(back, 0, 3);
-        gpane.add(quit, 2, 3);
-        gpane.add(saveSettings, 1, 3);
-        gpane.add(soundLabel, 0, 1);
-        gpane.add(displayLabel, 0, 2);
+        gpane.add(back, 3, 0);
+        gpane.add(quit, 3, 2);
+        gpane.add(saveSettings, 3, 1);
+        gpane.add(soundLabel, 1, 0);
+        gpane.add(displayLabel, 2, 0);
         
         
         //gpane.setVisible(true);
         
         back.setOnAction(e->{
             //go to MainMenuScreen
-            gpane.setVisible(false);
-            new MainMenuScreen();
+            ScreenSwapper.getInstance().setState(STATE.START);
         });
         
         quit.setOnAction(e->{

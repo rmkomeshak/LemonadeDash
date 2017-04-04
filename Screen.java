@@ -21,12 +21,21 @@ import javafx.scene.text.Text;
  */
 public class Screen extends Node{
     
-    public Text formatText(String text, String font, int size, int x, int y){
+    UserInventory ui = UserInventory.getInstance();
+    
+    public Text formatText(String text, int size, int x, int y){
         Text temp = new Text(text);
-        temp.setFont(Font.font(font, size));
+        temp.setFont(Font.font("Calibri", size));
+        
         temp.setTranslateX(x);
         temp.setTranslateY(y);
         
+        return temp;
+    }
+    
+    public Text formatText(String text, int size){
+        Text temp = new Text(text);
+        temp.setFont(Font.font("Calibri", size));
         return temp;
     }
     

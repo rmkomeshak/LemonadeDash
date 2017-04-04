@@ -3,6 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+package lemonadedash;
 
 import com.sun.javafx.geom.BaseBounds;
 import com.sun.javafx.geom.transform.BaseTransform;
@@ -13,10 +14,12 @@ import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import lemonadedash.ScreenSwapper.STATE;
 
 /**
  *
@@ -28,16 +31,18 @@ public class SetupScreen extends Screen{
     HBox buttons = new HBox();
     Text title;
     TextField stand_name;
-    UserInventory ui = UserInventory.getInstance();
     
     public SetupScreen(){
         super();
-        layout.setPrefSize(Scaling.windowWidth(), Scaling.windowHeight());
+        setup.setPrefSize(800, 600);
+        layout.setPrefSize(800, 600);
         layout.setAlignment(Pos.TOP_CENTER);
         buttons.setTranslateY(200);
         drawText();
         drawButtons();
+        //setup.setAlignment(Pos.TOP_CENTER);
         setup.getChildren().addAll(layout);
+        //setup.add(title, 0, 0);
     }
     
     public Pane initScreen(){
@@ -45,39 +50,42 @@ public class SetupScreen extends Screen{
     }
     
     public void drawText(){
-        title = formatText("SETUP", "Calibri", 50, 0, 50);
-        Text prompt = formatText("Name your lemonade stand", "Calibri", 25, 0, 100);
-        stand_name = formatTextField(100, 0, 120);
-        
+        title = formatText("SETUP", 50, 0, 50);
+        Text prompt = formatText("Name your lemonade stand", 25, 0, 100);
+        stand_name = formatTextField(1, 0, 120);
+        stand_name.setAlignment(Pos.CENTER);
+        //setup.add(prompt, 0, 1);
         
         layout.getChildren().addAll(title, prompt, stand_name, buttons);
     }
     
     public void drawButtons(){
         Button day7 = new Button("7 Day");
-        day7.setOnAction(e->{
-            ui.setName(stand_name.getText());
-        });
         day7.setTranslateX(200);
+        day7.setOnAction(e->{
+            buttonAction(7);
+        });
         
         Button day14 = new Button("14 Days");
-        
-        day14.setOnAction(e->{
-            swapScene();
-        });
-        
         day14.setTranslateX(300);
-        
-        Button day30 = new Button("30 Days");
-        day30.setOnAction(e->{
-            swapScene();
+        day14.setOnAction(e->{
+            buttonAction(14);
         });
+ 
+        Button day30 = new Button("30 Days");
         day30.setTranslateX(400);
+        day30.setOnAction(e->{
+            buttonAction(30);
+        });
+        
         buttons.getChildren().addAll(day7, day14, day30);
     }
     
     
-    public String swapScene(){
-        return "invest";
+    public void buttonAction(int day){
+        ui.setDay(day);
+        ScreenSwapper.getInstance().setState(STATE.STORE);
+        ui.setName(stand_name.getText());
+        stand_name.clear();
     }
 }

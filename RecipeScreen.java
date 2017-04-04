@@ -3,6 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+package lemonadedash;
 
 import com.sun.javafx.geom.BaseBounds;
 import com.sun.javafx.geom.transform.BaseTransform;
@@ -38,11 +39,11 @@ public class RecipeScreen extends Screen{
     public RecipeScreen(){
         super();
         
-        layout.setPrefSize(Scaling.windowWidth(), Scaling.windowHeight());
+        layout.setPrefSize(800,600);
         layout.setAlignment(Pos.TOP_CENTER);
     
         
-        purchase.setPrefSize(Scaling.windowWidth(), Scaling.windowHeight());
+        purchase.setPrefSize(800, 600);
         purchase.setAlignment(Pos.TOP_CENTER);
         
         drawText();
@@ -59,21 +60,22 @@ public class RecipeScreen extends Screen{
         title.setTranslateY(50);
         title.setFont(Font.font("Calibri", 50));
         
-        Text subtitle1 = formatText("Lemons per pitcher:", "Calibri",27, 200, 120);
-        Text subtitle2 = formatText("Sugar per pitcher:", "Calibri", 27, 200, 130);
-        Text subtitle3 = formatText("Ice per Cup:", "Calibri", 27, 200, 140);
-        Text subtitle4 = formatText("Price per Cup:", "Calibri", 27, 200, 150);
+        Text subtitle1 = formatText("Lemons per pitcher:", 27, 200, 120);
+        Text subtitle2 = formatText("Sugar per pitcher:", 27, 200, 130);
+        Text subtitle3 = formatText("Ice per Cup:", 27, 200, 140);
+        Text subtitle4 = formatText("Price per Cup:", 27, 200, 150);
             
         TextField subtitle5= formatTextField(50, 200, 120);
         TextField subtitle6= formatTextField(50, 200, 130);
         TextField subtitle7= formatTextField(50, 200, 140);
         TextField subtitle8= formatTextField(50, 200, 150);
         
-        Text subtitle9 = formatText("Lemons ", "Calibri",20, 485, 97);
-        Text subtitle10= formatText("Cups", "Calibri",20, 460, 107);
-        Text subtitle11 = formatText("Cubes ", "Calibri",20, 395, 117);
-        Text subtitle12 = formatText("Cent", "Calibri",20, 415, 127);
-
+        Text subtitle9 = formatText("Lemons ",20, 485, 97);
+        Text subtitle10= formatText("Cups",20, 460, 107);
+        Text subtitle11 = formatText("Cubes ",20, 395, 117);
+        Text subtitle12 = formatText("Cent",20, 415, 127);
+        
+        
         
         HBox lemon_box = new HBox();
         lemon_box.getChildren().addAll(subtitle1, subtitle5);
@@ -111,4 +113,26 @@ public class RecipeScreen extends Screen{
         begin_day.setTranslateY(200);
         purchase.getChildren().add(begin_day);
      }
+    
+    
+
+    @Override
+    protected NGNode impl_createPeer() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public BaseBounds impl_computeGeomBounds(BaseBounds bounds, BaseTransform tx) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    protected boolean impl_computeContains(double localX, double localY) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Object impl_processMXNode(MXNodeAlgorithm alg, MXNodeAlgorithmContext ctx) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

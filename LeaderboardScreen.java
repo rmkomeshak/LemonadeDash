@@ -11,6 +11,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
+import lemonadedash.ScreenSwapper.STATE;
 
 /**
  *
@@ -46,14 +47,14 @@ public class LeaderboardScreen extends Screen {
         
         gpane.add(title, 0, 0);
         //gpane.add(header,1, 0 );
-        gpane.add(back, 0, 1);
+        gpane.add(back, 1, 0);
         gpane.add(quit, 1, 1);
         
         
         //gpane.setVisible(true);
         
         back.setOnAction(e->{
-            //go to main menu screen 
+            ScreenSwapper.getInstance().setState(STATE.START);
         });
         
         quit.setOnAction(e->{
