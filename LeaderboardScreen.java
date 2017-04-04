@@ -46,7 +46,7 @@ public class LeaderboardScreen extends Screen {
         
         gpane.add(title, 0, 0);
         //gpane.add(header,1, 0 );
-        gpane.add(back, 1, 0);
+        gpane.add(back, 0, 1);
         gpane.add(quit, 1, 1);
         
         

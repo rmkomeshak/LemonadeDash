@@ -57,11 +57,11 @@ public class OptionsScreen extends Screen {
         
         gpane.add(title, 0, 0);
         //gpane.getChildren().add(header);
-        gpane.add(back, 3, 0);
-        gpane.add(quit, 3, 2);
-        gpane.add(saveSettings, 3, 1);
-        gpane.add(soundLabel, 1, 0);
-        gpane.add(displayLabel, 2, 0);
+        gpane.add(back, 0, 3);
+        gpane.add(quit, 2, 3);
+        gpane.add(saveSettings, 1, 3);
+        gpane.add(soundLabel, 0, 1);
+        gpane.add(displayLabel, 0, 2);
         
         
         //gpane.setVisible(true);
