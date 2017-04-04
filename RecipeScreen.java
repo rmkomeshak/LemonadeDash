@@ -38,11 +38,11 @@ public class RecipeScreen extends Screen{
     public RecipeScreen(){
         super();
         
-        layout.setPrefSize(LemonadeDash.scaledWindowWidth(),LemonadeDash.scaledWindowHeight());
+        layout.setPrefSize(Scaling.windowWidth(), Scaling.windowHeight());
         layout.setAlignment(Pos.TOP_CENTER);
     
         
-        purchase.setPrefSize(LemonadeDash.scaledWindowWidth(),LemonadeDash.scaledWindowHeight());
+        purchase.setPrefSize(Scaling.windowWidth(), Scaling.windowHeight());
         purchase.setAlignment(Pos.TOP_CENTER);
         
         drawText();
@@ -73,8 +73,7 @@ public class RecipeScreen extends Screen{
         Text subtitle10= formatText("Cups", "Calibri",20, 460, 107);
         Text subtitle11 = formatText("Cubes ", "Calibri",20, 395, 117);
         Text subtitle12 = formatText("Cent", "Calibri",20, 415, 127);
-        
-        
+
         
         HBox lemon_box = new HBox();
         lemon_box.getChildren().addAll(subtitle1, subtitle5);

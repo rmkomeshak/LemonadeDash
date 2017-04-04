@@ -32,7 +32,7 @@ public class SetupScreen extends Screen{
     
     public SetupScreen(){
         super();
-        layout.setPrefSize(LemonadeDash.scaledWindowWidth(),LemonadeDash.scaledWindowHeight());
+        layout.setPrefSize(Scaling.windowWidth(), Scaling.windowHeight());
         layout.setAlignment(Pos.TOP_CENTER);
         buttons.setTranslateY(200);
         drawText();

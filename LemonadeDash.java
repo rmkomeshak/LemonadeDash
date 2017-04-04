@@ -18,7 +18,6 @@ import java.awt.*;
 public class LemonadeDash extends Application {
     Pane cur_pane = new Pane();
     Scene scene;
-    static double scale = 60;
     
     private STATE state = STATE.SETUP;
     Button cont = new Button("Continue");
@@ -26,20 +25,6 @@ public class LemonadeDash extends Application {
     StoreScreen store = new StoreScreen();
     RecipeScreen recipe = new RecipeScreen();
     SetupScreen setup = new SetupScreen();
-
-    public static double scaledWindowWidth() {
-        GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
-        int width = gd.getDisplayMode().getWidth();
-        double newWidth = scale/100 * width;
-        return newWidth;
-    }
-
-    public static double scaledWindowHeight() {
-        GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
-        int height = gd.getDisplayMode().getHeight();
-        double newHeight = scale/100 * height;
-        return newHeight;
-    }
 
     
     public Pane initStore(){ return store.initScreen(); }
@@ -73,7 +58,7 @@ public class LemonadeDash extends Application {
         cont.setTranslateY(350);
         cur_pane.getChildren().add(cont);
         
-        scene = new Scene(cur_pane, scaledWindowWidth(), scaledWindowHeight());
+        scene = new Scene(cur_pane, Scaling.windowWidth(), Scaling.windowHeight());
         primaryStage.setTitle("Lemonade Dash");
         primaryStage.setScene(scene);
         primaryStage.show();
