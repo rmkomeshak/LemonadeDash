@@ -14,14 +14,24 @@ public class UserInventory {
     private String name;
     private double money = 20;
     int day_choice;
-    
-    public UserInventory(){
+    private static volatile UserInventory instance;
+
+    private UserInventory(){
         cups = 0;
         lemons = 0;
         ice = 0;
         sugar = 0;
         money = 20;
     }
+    
+
+    public static synchronized UserInventory getInstance(){
+        if(instance == null){
+            instance = new UserInventory();
+        }
+        return instance;
+    }       
+    
     
     public void setCups(int x){
         cups = x;

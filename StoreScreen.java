@@ -41,11 +41,8 @@ public class StoreScreen extends Screen{
     double ice_price = 0.05;
     
     int cup_input, lemon_input, sugar_input, ice_input;
-    
-    UserInventory ui = new UserInventory();
-    
     Text title = new Text("STORE");
-    
+    UserInventory ui = UserInventory.getInstance();
     
     
     public StoreScreen(){
@@ -104,7 +101,6 @@ public class StoreScreen extends Screen{
         ice_purchase.getChildren().addAll(ice_amt, ice_cost);
         
         
-        
         money = formatText(("Money: $" + ui.getMoney()), "Calibri", 15, -350, 200);
         
         owned.getChildren().addAll(subtitle1, cups_owned, lemons_owned, sugar_owned, ice_owned);
@@ -115,12 +111,13 @@ public class StoreScreen extends Screen{
     }
     
     public void drawButtons(){
-        Button buy = new Button ("Buy");
+        Button buy = new Button("Buy");
         buy.setTranslateY(150);
         purchase.getChildren().add(buy);
         
         //TODO: LIMIT INPUT: NO CHARACTERS, NO STRINGS, NO NEGATIVES
         buy.setOnAction(e -> {
+            System.out.println(ui.getName());
             if(!cup_amt.getText().isEmpty()){
                 cup_input = Integer.valueOf(cup_amt.getText());
                 if((cup_input * cup_price) <= ui.getMoney()){
@@ -186,43 +183,4 @@ public class StoreScreen extends Screen{
         sugar_owned.setText(ui.getSugar() + " Sugar");
     }
     
-    /*public Text formatText(String text, String font, int size, int x, int y){
-        Text temp = new Text(text);
-        temp.setFont(Font.font(font, size));
-        temp.setTranslateX(x);
-        temp.setTranslateY(y);
-        
-        return temp;
-    }*/
-    
-    /*public TextField formatTextField(int width, int x, int y){
-       TextField tf = new TextField();
-       tf.setPrefWidth(width);
-       tf.setTranslateX(x);
-       tf.setTranslateY(y);
-       
-       return tf;
-    }*/
-    
-    
-
-    @Override
-    protected NGNode impl_createPeer() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public BaseBounds impl_computeGeomBounds(BaseBounds bounds, BaseTransform tx) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    protected boolean impl_computeContains(double localX, double localY) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public Object impl_processMXNode(MXNodeAlgorithm alg, MXNodeAlgorithmContext ctx) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 }

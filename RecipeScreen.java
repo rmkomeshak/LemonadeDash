@@ -32,9 +32,6 @@ public class RecipeScreen extends Screen{
     HBox lemonInput= new HBox();
     
     VBox corner_info = new VBox();
-    
-    UserInventory ui = new UserInventory();
-    
     Text title = new Text("RECIPE");
     
     
@@ -116,26 +113,4 @@ public class RecipeScreen extends Screen{
         begin_day.setTranslateY(200);
         purchase.getChildren().add(begin_day);
      }
-    
-    
-
-    @Override
-    protected NGNode impl_createPeer() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public BaseBounds impl_computeGeomBounds(BaseBounds bounds, BaseTransform tx) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    protected boolean impl_computeContains(double localX, double localY) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public Object impl_processMXNode(MXNodeAlgorithm alg, MXNodeAlgorithmContext ctx) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 }

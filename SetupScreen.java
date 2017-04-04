@@ -28,6 +28,8 @@ public class SetupScreen extends Screen{
     VBox layout = new VBox();
     HBox buttons = new HBox();
     Text title;
+    TextField stand_name;
+    UserInventory ui = UserInventory.getInstance();
     
     public SetupScreen(){
         super();
@@ -46,7 +48,7 @@ public class SetupScreen extends Screen{
     public void drawText(){
         title = formatText("SETUP", "Calibri", 50, 0, 50);
         Text prompt = formatText("Name your lemonade stand", "Calibri", 25, 0, 100);
-        TextField stand_name = formatTextField(100, 0, 120);
+        stand_name = formatTextField(100, 0, 120);
         
         
         layout.getChildren().addAll(title, prompt, stand_name, buttons);
@@ -54,9 +56,8 @@ public class SetupScreen extends Screen{
     
     public void drawButtons(){
         Button day7 = new Button("7 Day");
-        
         day7.setOnAction(e->{
-            swapScene();
+            ui.setName(stand_name.getText());
         });
         day7.setTranslateX(200);
         
@@ -80,25 +81,4 @@ public class SetupScreen extends Screen{
     public String swapScene(){
         return "invest";
     }
-    
-    @Override
-    protected NGNode impl_createPeer() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public BaseBounds impl_computeGeomBounds(BaseBounds bounds, BaseTransform tx) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    protected boolean impl_computeContains(double localX, double localY) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public Object impl_processMXNode(MXNodeAlgorithm alg, MXNodeAlgorithmContext ctx) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
 }
