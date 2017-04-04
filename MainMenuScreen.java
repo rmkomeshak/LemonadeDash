@@ -57,10 +57,10 @@ public class MainMenuScreen extends Screen{
         
         gpane.add(title, 0, 0);
         //gpane.getChildren().add(welcome);
-        gpane.add(newGame, 1, 0);
-        gpane.add(leaderboard, 2, 0);
-        gpane.add(options, 3, 0);
-        gpane.add(quit,3, 1 );
+        gpane.add(newGame, 0, 1);
+        gpane.add(leaderboard, 0, 2);
+        gpane.add(options, 0, 3);
+        gpane.add(quit, 1, 3 );
         
         
         //gpane.setVisible(true);
