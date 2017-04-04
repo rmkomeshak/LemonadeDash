@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package lemonadedash;
 
 import com.sun.javafx.geom.BaseBounds;
 import com.sun.javafx.geom.transform.BaseTransform;
@@ -33,7 +32,7 @@ public class SetupScreen extends Screen{
     
     public SetupScreen(){
         super();
-        layout.setPrefSize(800, 600);
+        layout.setPrefSize(LemonadeDash.scaledWindowWidth(),LemonadeDash.scaledWindowHeight());
         layout.setAlignment(Pos.TOP_CENTER);
         buttons.setTranslateY(200);
         drawText();

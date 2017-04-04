@@ -1,5 +1,3 @@
-package lemonadedash;
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -15,34 +13,36 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
+import java.awt.*;
+
 public class LemonadeDash extends Application {
     Pane cur_pane = new Pane();
     Scene scene;
+    static double scale = 60;
     
     private STATE state = STATE.SETUP;
     Button cont = new Button("Continue");
     
-    MainMenuScreen mainMenu = new MainMenuScreen();
     StoreScreen store = new StoreScreen();
     RecipeScreen recipe = new RecipeScreen();
     SetupScreen setup = new SetupScreen();
-    OptionsScreen options = new OptionsScreen();
-    LeaderboardScreen leaderboard = new LeaderboardScreen();
+
+    public static double scaledWindowWidth() {
+        GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
+        int width = gd.getDisplayMode().getWidth();
+        double newWidth = scale/100 * width;
+        return newWidth;
+    }
+
+    public static double scaledWindowHeight() {
+        GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
+        int height = gd.getDisplayMode().getHeight();
+        double newHeight = scale/100 * height;
+        return newHeight;
+    }
+
     
-    public Pane initLeaderboard(){
-        return leaderboard.initScreen();
-    }
-    
-    public Pane initOptions(){
-        return options.initScreen();
-    }
-    public Pane initMainMenu(){
-        return mainMenu.initScreen();
-    }
-    
-    public Pane initStore(){
-        return store.initScreen();
-    }
+    public Pane initStore(){ return store.initScreen(); }
     
     public Pane initRecipe(){
         return recipe.initScreen();
@@ -56,7 +56,6 @@ public class LemonadeDash extends Application {
     public void start(Stage primaryStage) {
         
         cont.setOnAction(e->{
-            
             if(state == STATE.SETUP){
                 state = STATE.STORE;
                 cur_pane = initStore();
@@ -68,14 +67,13 @@ public class LemonadeDash extends Application {
                 scene.setRoot(initRecipe());
             }
             
-            
         });
-        cur_pane = initMainMenu();
+        cur_pane = initSetup();
         cont.setTranslateX(350);
         cont.setTranslateY(350);
         cur_pane.getChildren().add(cont);
         
-        scene = new Scene(cur_pane, 800, 600);
+        scene = new Scene(cur_pane, scaledWindowWidth(), scaledWindowHeight());
         primaryStage.setTitle("Lemonade Dash");
         primaryStage.setScene(scene);
         primaryStage.show();
