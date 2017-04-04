@@ -1,9 +1,10 @@
+package lemonadedash;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package lemonadedash;
 
 import javafx.application.Application;
 import javafx.event.ActionEvent;
@@ -21,13 +22,25 @@ public class LemonadeDash extends Application {
     private STATE state = STATE.SETUP;
     Button cont = new Button("Continue");
     
+    MainMenuScreen mainMenu = new MainMenuScreen();
     StoreScreen store = new StoreScreen();
     RecipeScreen recipe = new RecipeScreen();
     SetupScreen setup = new SetupScreen();
+    OptionsScreen options = new OptionsScreen();
+    LeaderboardScreen leaderboard = new LeaderboardScreen();
+    
+    public Pane initLeaderboard(){
+        return leaderboard.initScreen();
+    }
+    
+    public Pane initOptions(){
+        return options.initScreen();
+    }
+    public Pane initMainMenu(){
+        return mainMenu.initScreen();
+    }
     
     public Pane initStore(){
-        
-        
         return store.initScreen();
     }
     
@@ -43,6 +56,7 @@ public class LemonadeDash extends Application {
     public void start(Stage primaryStage) {
         
         cont.setOnAction(e->{
+            
             if(state == STATE.SETUP){
                 state = STATE.STORE;
                 cur_pane = initStore();
@@ -54,8 +68,9 @@ public class LemonadeDash extends Application {
                 scene.setRoot(initRecipe());
             }
             
+            
         });
-        cur_pane = initSetup();
+        cur_pane = initMainMenu();
         cont.setTranslateX(350);
         cont.setTranslateY(350);
         cur_pane.getChildren().add(cont);
