@@ -5,6 +5,7 @@
  */
 package lemonadedash;
 
+import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -32,7 +33,7 @@ public class MainMenuScreen extends Screen{
      //private Label welcome;
      private Button newGame, leaderboard, quit, options;
      
-     public Pane initScreen(){
+     public GridPane initScreen(){
          //????
          return gpane;
      }
@@ -43,6 +44,7 @@ public class MainMenuScreen extends Screen{
         
         //pane= new Pane();
         gpane = new GridPane();
+        gpane.setAlignment(Pos.CENTER);
         gpane.setHgap(10);
         gpane.setVgap(10);
         gpane.setPadding(new Insets(0, 10, 0, 10));
@@ -57,10 +59,15 @@ public class MainMenuScreen extends Screen{
         
         gpane.add(title, 0, 0);
         //gpane.getChildren().add(welcome);
+        
         gpane.add(newGame, 0, 1);
+        gpane.setHalignment(newGame, HPos.CENTER);
         gpane.add(leaderboard, 0, 2);
+        gpane.setHalignment(leaderboard, HPos.CENTER);
         gpane.add(options, 0, 3);
-        gpane.add(quit, 1, 3 );
+        gpane.setHalignment(options, HPos.CENTER);
+        gpane.add(quit, 0, 4);
+        gpane.setHalignment(quit, HPos.CENTER);
         
         
         //gpane.setVisible(true);
