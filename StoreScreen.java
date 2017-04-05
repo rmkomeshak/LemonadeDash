@@ -51,8 +51,8 @@ public class StoreScreen extends Screen{
     
     public StoreScreen(){
         super();
-        store.setId("pane");
-        store.getStylesheets().addAll(this.getClass().getResource("style.css").toExternalForm());
+        //store.setId("pane");
+        //store.getStylesheets().addAll(this.getClass().getResource("style.css").toExternalForm());
         title.setImage(new Image("file:resource/image/store-title.png", 200, 100, true, true));
         layout.setPrefSize(Scaling.windowWidth(), Scaling.windowHeight());
         layout.setAlignment(Pos.TOP_CENTER);
@@ -107,7 +107,7 @@ public class StoreScreen extends Screen{
         ice_purchase.getChildren().addAll(ice_amt, ice_cost);
         
         
-        money = formatText(("Money: $" + ui.getMoney()), 15, -350, 200);
+        money = formatText(("Money: $" + ui.getMoney()), 15, -350, 0);
         
         owned.getChildren().addAll(subtitle1, cups_owned, lemons_owned, sugar_owned, ice_owned);
         purchase.getChildren().addAll(subtitle2, cups_purchase, lemons_purchase, sugar_purchase, ice_purchase);
@@ -124,6 +124,7 @@ public class StoreScreen extends Screen{
         purchase.getChildren().add(buy);
         layout.getChildren().add(next);
         
+        next.setTranslateY(-100);
         next.setOnAction(e->{
             ScreenSwapper.getInstance().setState(ScreenSwapper.STATE.RECIPE);
         });

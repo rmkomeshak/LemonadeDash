@@ -15,6 +15,8 @@ import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
@@ -33,7 +35,7 @@ public class RecipeScreen extends Screen{
     HBox lemonInput= new HBox();
     
     VBox corner_info = new VBox();
-    Text title = new Text("RECIPE");
+    //Text title = new Text("RECIPE");
     
     
     
@@ -58,8 +60,10 @@ public class RecipeScreen extends Screen{
     }
     
     public void drawText(){
-        title.setTranslateY(50);
-        title.setFont(Font.font("Calibri", 50));
+        //title.setTranslateY(50);
+        //title.setFont(Font.font("Calibri", 50));
+        ImageView title = new ImageView(new Image("file:resource/image/recipe-title.png", 250, 200, true, true));
+        title.setTranslateY(30);
         
         Text subtitle1 = formatText("Lemons per pitcher:", 27, 200, 120);
         Text subtitle2 = formatText("Sugar per pitcher:", 27, 200, 130);

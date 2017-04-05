@@ -40,7 +40,7 @@ public class SetupScreen extends Screen{
     
     public SetupScreen(){
         super();
-        title.setImage(new Image("file:resource/image/setup-title.png", 200, 100, true, true));
+        title.setImage(new Image("file:resource/image/setup-title.png", 225, 200, true, true));
         setup.setPrefSize(Scaling.windowWidth(), Scaling.windowHeight());
         setup.setAlignment(Pos.CENTER);
         setup.setHgap(10);
