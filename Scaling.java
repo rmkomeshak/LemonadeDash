@@ -1,3 +1,5 @@
+package lemonadedash;
+
 import java.awt.*;
 
 /**

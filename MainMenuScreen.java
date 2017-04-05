@@ -1,3 +1,4 @@
+package lemonadedash;
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -11,6 +12,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
@@ -46,7 +49,7 @@ public class MainMenuScreen extends Screen{
         gpane.setHgap(10);
         gpane.setVgap(10);
         gpane.setPadding(new Insets(0, 10, 0, 10));
-        Text title = new Text("Welcome to Lemonade Dash!");
+        ImageView title = new ImageView(new Image("file:resource/image/main-menu-title.png", 600, 600, true, true));
         
         //welcome = new Label("Welcome to Lemonade Dash!");
         newGame = new Button("New Game");
