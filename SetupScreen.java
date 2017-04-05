@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package lemonadedash;
 
 import com.sun.javafx.geom.BaseBounds;
 import com.sun.javafx.geom.transform.BaseTransform;
@@ -19,7 +18,6 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
-import lemonadedash.ScreenSwapper.STATE;
 
 /**
  *
@@ -34,8 +32,8 @@ public class SetupScreen extends Screen{
     
     public SetupScreen(){
         super();
-        setup.setPrefSize(800, 600);
-        layout.setPrefSize(800, 600);
+        setup.setPrefSize(Scaling.windowWidth(), Scaling.windowHeight());
+        layout.setPrefSize(Scaling.windowWidth(), Scaling.windowHeight());
         layout.setAlignment(Pos.TOP_CENTER);
         buttons.setTranslateY(200);
         drawText();
@@ -84,7 +82,7 @@ public class SetupScreen extends Screen{
     
     public void buttonAction(int day){
         ui.setDay(day);
-        ScreenSwapper.getInstance().setState(STATE.STORE);
+        ScreenSwapper.getInstance().setState(ScreenSwapper.STATE.STORE);
         ui.setName(stand_name.getText());
         stand_name.clear();
     }

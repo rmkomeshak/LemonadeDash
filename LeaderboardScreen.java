@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package lemonadedash;
 
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
@@ -11,7 +10,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
-import lemonadedash.ScreenSwapper.STATE;
+
 
 /**
  *
@@ -54,7 +53,7 @@ public class LeaderboardScreen extends Screen {
         //gpane.setVisible(true);
         
         back.setOnAction(e->{
-            ScreenSwapper.getInstance().setState(STATE.START);
+            ScreenSwapper.getInstance().setState(ScreenSwapper.STATE.START);
         });
         
         quit.setOnAction(e->{

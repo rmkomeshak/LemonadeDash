@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package lemonadedash;
 
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
@@ -20,7 +19,6 @@ import javafx.scene.text.Text;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import lemonadedash.ScreenSwapper.STATE;
 
 /**
  *
@@ -75,17 +73,17 @@ public class MainMenuScreen extends Screen{
         
         
         newGame.setOnAction(e->{
-            ScreenSwapper.getInstance().setState(STATE.SETUP);
+            ScreenSwapper.getInstance().setState(ScreenSwapper.STATE.SETUP);
         });
         
         leaderboard.setOnAction(e->{
             //go to Leaderboard screen
-            ScreenSwapper.getInstance().setState(STATE.HIGHSCORES);
+            ScreenSwapper.getInstance().setState(ScreenSwapper.STATE.HIGHSCORES);
         });
         
         options.setOnAction(e->{
             //go to options screen
-            ScreenSwapper.getInstance().setState(STATE.OPTIONS);
+            ScreenSwapper.getInstance().setState(ScreenSwapper.STATE.OPTIONS);
         });
         
         quit.setOnAction(e->{

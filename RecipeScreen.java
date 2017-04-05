@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package lemonadedash;
 
 import com.sun.javafx.geom.BaseBounds;
 import com.sun.javafx.geom.transform.BaseTransform;
@@ -39,11 +38,11 @@ public class RecipeScreen extends Screen{
     public RecipeScreen(){
         super();
         
-        layout.setPrefSize(800,600);
+        layout.setPrefSize(Scaling.windowWidth(), Scaling.windowHeight());
         layout.setAlignment(Pos.TOP_CENTER);
     
         
-        purchase.setPrefSize(800, 600);
+        purchase.setPrefSize(Scaling.windowWidth(), Scaling.windowHeight());
         purchase.setAlignment(Pos.TOP_CENTER);
         
         drawText();

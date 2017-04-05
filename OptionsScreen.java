@@ -1,5 +1,3 @@
-package lemonadedash;
-
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -15,7 +13,6 @@ import javafx.scene.text.Text;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import lemonadedash.ScreenSwapper.STATE;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -69,7 +66,7 @@ public class OptionsScreen extends Screen {
         
         back.setOnAction(e->{
             //go to MainMenuScreen
-            ScreenSwapper.getInstance().setState(STATE.START);
+            ScreenSwapper.getInstance().setState(ScreenSwapper.STATE.START);
         });
         
         quit.setOnAction(e->{

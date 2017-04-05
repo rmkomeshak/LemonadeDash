@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package lemonadedash;
 
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;

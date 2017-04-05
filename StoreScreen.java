@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package lemonadedash;
 
 import com.sun.javafx.geom.BaseBounds;
 import com.sun.javafx.geom.transform.BaseTransform;
@@ -22,7 +21,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
-import lemonadedash.ScreenSwapper.STATE;
+
 
 /**
  *
@@ -53,13 +52,13 @@ public class StoreScreen extends Screen{
         store.setId("pane");
         store.getStylesheets().addAll(this.getClass().getResource("style.css").toExternalForm());
         title.setImage(new Image("file:resource/image/store-title.png", 200, 100, true, true));
-        layout.setPrefSize(800,600);
+        layout.setPrefSize(Scaling.windowWidth(), Scaling.windowHeight());
         layout.setAlignment(Pos.TOP_CENTER);
         
-        owned.setPrefSize(600,300);
+        owned.setPrefSize(Scaling.windowWidth(), Scaling.windowHeight());
         owned.setAlignment(Pos.TOP_CENTER);
         
-        purchase.setPrefSize(600,300);
+        purchase.setPrefSize(Scaling.windowWidth(), Scaling.windowHeight());
         purchase.setAlignment(Pos.TOP_CENTER);
         
         drawText();
@@ -124,7 +123,7 @@ public class StoreScreen extends Screen{
         layout.getChildren().add(next);
         
         next.setOnAction(e->{
-            ScreenSwapper.getInstance().setState(STATE.RECIPE);
+            ScreenSwapper.getInstance().setState(ScreenSwapper.STATE.RECIPE);
         });
         //TODO: LIMIT INPUT: NO CHARACTERS, NO STRINGS, NO NEGATIVES
         buy.setOnAction(e -> {

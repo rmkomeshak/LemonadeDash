@@ -1,5 +1,3 @@
-package lemonadedash;
-
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
@@ -19,7 +17,7 @@ public class LemonadeDash extends Application {
     @Override
     public void start(Stage primaryStage) {
         
-        scene = new Scene(ss.getCurrentScreen(), 800, 600);
+        scene = new Scene(ss.getCurrentScreen(), Scaling.windowWidth(), Scaling.windowHeight());
         primaryStage.setTitle("Lemonade Dash");
         primaryStage.setScene(scene);
         primaryStage.show();
