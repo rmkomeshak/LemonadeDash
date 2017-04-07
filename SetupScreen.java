@@ -12,6 +12,7 @@ import com.sun.javafx.geom.transform.BaseTransform;
 import com.sun.javafx.jmx.MXNodeAlgorithm;
 import com.sun.javafx.jmx.MXNodeAlgorithmContext;
 import com.sun.javafx.sg.prism.NGNode;
+import javafx.event.EventType;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -36,7 +37,8 @@ public class SetupScreen extends Screen{
     VBox layout = new VBox();
     HBox buttons = new HBox();
     ImageView title = new ImageView();
-    TextField stand_name;
+    TextField stand_name = new TextField();
+ 
     
     public SetupScreen(){
         super();
@@ -109,9 +111,33 @@ public class SetupScreen extends Screen{
     
     
     public void buttonAction(int day){
+        
+        if(isLetterValid(stand_name.getText()))
+        {
         ui.setDay(day);
         ScreenSwapper.getInstance().setState(ScreenSwapper.STATE.STORE);
         ui.setName(stand_name.getText());
         stand_name.clear();
+        }
+               
     }
+    
+    //Does not allow the user to continue if the length of the string is greater than 40 or the length of the string is 0
+    
+    public boolean isLetterValid(String str)
+    {
+        if(str.length()>32 || str.length()==0)
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+               
+           
+       }
+       
+    }
+    
+  
 }
