@@ -33,6 +33,11 @@ public class RecipeScreen extends Screen{
     VBox purchase = new VBox();
     HBox total = new HBox();
     HBox lemonInput= new HBox();
+    TextField lemons;
+    TextField cups;
+    TextField ice;
+    TextField priceCup;
+        
     
     VBox corner_info = new VBox();
     //Text title = new Text("RECIPE");
@@ -70,10 +75,10 @@ public class RecipeScreen extends Screen{
         Text subtitle3 = formatText("Ice per Cup:", 27, 200, 140);
         Text subtitle4 = formatText("Price per Cup:", 27, 200, 150);
             
-        TextField subtitle5= formatTextField(50, 200, 120);
-        TextField subtitle6= formatTextField(50, 200, 130);
-        TextField subtitle7= formatTextField(50, 200, 140);
-        TextField subtitle8= formatTextField(50, 200, 150);
+         lemons= formatTextField(50, 200, 120);
+         cups= formatTextField(50, 200, 130);
+         ice= formatTextField(50, 200, 140);
+         priceCup= formatTextField(50, 200, 150);
         
         Text subtitle9 = formatText("Lemons ",20, 485, 97);
         Text subtitle10= formatText("Cups",20, 460, 107);
@@ -83,16 +88,16 @@ public class RecipeScreen extends Screen{
         
         
         HBox lemon_box = new HBox();
-        lemon_box.getChildren().addAll(subtitle1, subtitle5);
+        lemon_box.getChildren().addAll(subtitle1, lemons);
         
         HBox sugar_box = new HBox();
-        sugar_box.getChildren().addAll(subtitle2, subtitle6);
+        sugar_box.getChildren().addAll(subtitle2, cups);
         
         HBox ice_box = new HBox();
-        ice_box.getChildren().addAll(subtitle3, subtitle7);
+        ice_box.getChildren().addAll(subtitle3, ice);
         
         HBox price_box = new HBox();
-        price_box.getChildren().addAll(subtitle4, subtitle8);
+        price_box.getChildren().addAll(subtitle4, priceCup);
         
         HBox lemons = new HBox();
         lemons.getChildren().addAll(subtitle9);
@@ -111,13 +116,42 @@ public class RecipeScreen extends Screen{
         
         
     }
-    
+    //Do I have to do all of the possible combinations right???
      public void drawButtons()
      {
+       if(isNumericCharValid(lemons.getText()) || isNumericCharValid(cups.getText())
+          ||isNumericCharValid(ice.getText()) || isNumericCharValid(priceCup.getText()))
+        {
         Button begin_day = new Button ("Begin Day");
         begin_day.setTranslateY(200);
         purchase.getChildren().add(begin_day);
+        }
+                
      }
+     
+     
+     //Does not allow the user to continue if negative values are inputted or characters are inputted
+    
+    public boolean isNumericCharValid(String str)
+    {
+        if(str.length()<0)
+        {
+            return false;
+        }
+        
+        for(int i = 0; i < str.length(); i++)
+        {
+            if(Character.isAlphabetic(str.charAt(i)))
+            {
+              return false;
+              
+            }
+        }
+       
+       return true;
+        }
+    
+    
     
     
 
