@@ -128,38 +128,41 @@ public class StoreScreen extends Screen{
         next.setOnAction(e->{
             ScreenSwapper.getInstance().setState(ScreenSwapper.STATE.RECIPE);
         });
-        //TODO: LIMIT INPUT: NO CHARACTERS, NO STRINGS, NO NEGATIVES
+        //TODO: LIMIT INPUT: NO CHARACTERS, NO STRINGS, NO NEGATIVES 
         buy.setOnAction(e -> {
             System.out.println(ui.getName());
-            if(!cup_amt.getText().isEmpty()){
+            if(!cup_amt.getText().isEmpty() && isNumericCharValid(cup_amt.getText()))
+            
+            {
                 cup_input = Integer.valueOf(cup_amt.getText());
-                if((cup_input * cup_price) <= ui.getMoney()){
+                if((cup_input * cup_price) <= ui.getMoney() && cup_input>=0){
                     ui.setCups(ui.getCups() + cup_input);
                     ui.setMoney(ui.getMoney() - (cup_input * cup_price));
                     updateCups();
                 }
             }
             
-            if(!lemon_amt.getText().isEmpty()){
+            if(!lemon_amt.getText().isEmpty()&&isNumericCharValid(lemon_amt.getText()))
+            {
                 lemon_input = Integer.valueOf(lemon_amt.getText());
-                if((lemon_input * lemon_price) <= ui.getMoney()){
+                if((lemon_input * lemon_price) <= ui.getMoney()&&lemon_input>=0){
                     ui.setLemons(ui.getLemons() + lemon_input);
                     ui.setMoney(ui.getMoney() - (lemon_input * lemon_price));
                     updateLemons();
                 }
             }
                 
-            if(!ice_amt.getText().isEmpty()){
+            if(!ice_amt.getText().isEmpty() && isNumericCharValid(ice_amt.getText())){
                 ice_input = Integer.valueOf(ice_amt.getText());
-                if((ice_input * ice_price) <= ui.getMoney()){
+                if((ice_input * ice_price) <= ui.getMoney() &&ice_input>=0){
                     ui.setIce(ui.getIce() + ice_input);
                     ui.setMoney(ui.getMoney() - (ice_input * ice_price));
                     updateIce();
                 }
             }
-            if(!sugar_amt.getText().isEmpty()){
+            if(!sugar_amt.getText().isEmpty()&& isNumericCharValid(sugar_amt.getText())){
                 sugar_input = Integer.valueOf(sugar_amt.getText());
-                if((sugar_input * sugar_price) <= ui.getMoney()){
+                if((sugar_input * sugar_price) <= ui.getMoney()&&sugar_input>=0){
                     ui.setSugar(ui.getSugar() + sugar_input);
                     ui.setMoney(ui.getMoney() - (sugar_input * sugar_price));
                     updateSugar();
@@ -195,5 +198,28 @@ public class StoreScreen extends Screen{
     public void updateSugar(){
         sugar_owned.setText(ui.getSugar() + " Sugar");
     }
+    
+    //Does not allow the user to continue if negative values are inputted 
+    
+       //Does not allow the user to continue if negative values are inputted or characters/ special characters  are inputted
+    
+    public boolean isNumericCharValid(String str)
+    {
+        if(str.length()<=0 || str.length()>3)
+        {
+            return false;
+        }
+        
+        for(int i = 0; i < str.length(); i++)
+        {
+            if(Character.isAlphabetic(str.charAt(i))|| !Character.isDigit(str.charAt(i)))
+            {
+              return false;
+              
+            }
+        }
+       
+       return true;
+        }
     
 }
