@@ -10,6 +10,10 @@ package lemonadedash;
  *
  * @author Ryan
  */
+
+import java.util.Random;
+
+
 public class UserInventory {
     private int cups, lemons, ice, sugar, day, price;
     private int recipe_lemons, recipe_ice, recipe_sugar;
@@ -203,4 +207,41 @@ public class UserInventory {
     }
     
     
+
+    //Method to generate the random weather to be called within the store screen and recipe screen
+   
+    
+    public String generateWeather()
+    {
+                
+             
+    Random rand= new Random();
+    
+    int weather= rand.nextInt(4);
+ 
+    switch (weather) 
+  {
+        case 0:
+        return "Rainy"; 
+        
+        case 1:
+        return "Windy";
+        
+      
+        case 2:
+        return "Cloudy";   
+       
+        case 3:
+        return "Sunny";
+       
+	
+        	
+  }
+    
+    return Integer.toString(weather);
+    
+    }
+    
+    
 }
+
