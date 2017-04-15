@@ -15,7 +15,7 @@ import javafx.scene.layout.Pane;
  */
 public class ScreenSwapper {
     Pane current_screen;
-    Pane store, recipe, setup, mainMenu, options, leaderboard;
+    Pane store, recipe, setup, mainMenu, options, leaderboard, game;
     STATE state = STATE.START;
     private static volatile ScreenSwapper instance;
     
@@ -26,6 +26,7 @@ public class ScreenSwapper {
         mainMenu = new MainMenuScreen().initScreen();
         options = new OptionsScreen().initScreen();
         leaderboard = new LeaderboardScreen().initScreen();
+        game = new GameScreen().initScreen();
         current_screen = mainMenu;
     }
     

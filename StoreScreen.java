@@ -42,8 +42,8 @@ public class StoreScreen extends Screen{
     
     double cup_price = 0.1;
     double lemon_price = 0.5;
-    double sugar_price = 1;
-    double ice_price = 0.05;
+    double sugar_price = 0.5;
+    double ice_price = 0.01;
     
     int cup_input, lemon_input, sugar_input, ice_input;
     //Text title = new Text("STORE");
@@ -97,8 +97,8 @@ public class StoreScreen extends Screen{
         
         Text cup_cost = formatText("  Cups ($0.10/each)", 15, 100, 120);
         Text lemon_cost = formatText("  Lemons ($0.50/each)", 15, 100, 120);
-        Text sugar_cost = formatText("  Sugar ($1.00/each)", 15, 100, 120);
-        Text ice_cost = formatText("  Ice ($0.05/each)", 15, 100, 120);
+        Text sugar_cost = formatText("  Sugar ($0.50/each)", 15, 100, 120);
+        Text ice_cost = formatText("  Ice ($0.01/each)", 15, 100, 120);
         
         
         cups_purchase.getChildren().addAll(cup_amt, cup_cost);

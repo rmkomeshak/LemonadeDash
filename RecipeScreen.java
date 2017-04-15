@@ -119,13 +119,27 @@ public class RecipeScreen extends Screen{
     //Do I have to do all of the possible combinations right???
      public void drawButtons()
      {
-       if(isNumericCharValid(lemons.getText()) || isNumericCharValid(cups.getText())
-          ||isNumericCharValid(ice.getText()) || isNumericCharValid(priceCup.getText()))
-        {
-        Button begin_day = new Button ("Begin Day");
-        begin_day.setTranslateY(200);
-        purchase.getChildren().add(begin_day);
-        }
+       Button begin_day = new Button ("Begin Day");
+       begin_day.setTranslateY(200);
+       
+       begin_day.setOnAction(e-> {
+           if(isNumericCharValid(lemons.getText()) && isNumericCharValid(cups.getText())
+          && isNumericCharValid(ice.getText()) && isNumericCharValid(priceCup.getText())){
+               ui.setRecipeLemons(Integer.valueOf(lemons.getText()));
+               ui.setRecipeIce(Integer.valueOf(ice.getText()));
+               ui.setRecipeSugar(Integer.valueOf(cups.getText()));
+               ui.setPrice(Integer.valueOf(priceCup.getText()));
+               
+               ui.generateOptimalRecipe();
+               ui.calculateDifference();
+               ui.generateScore();
+               
+               ScreenSwapper.getInstance().setState(ScreenSwapper.STATE.GAME);
+           }
+       });
+       
+       
+       purchase.getChildren().add(begin_day);
                 
      }
      
@@ -134,14 +148,14 @@ public class RecipeScreen extends Screen{
     
     public boolean isNumericCharValid(String str)
     {
-        if(str.length()<0)
+        if(str.length()<=0 || str.length()>3)
         {
             return false;
         }
         
         for(int i = 0; i < str.length(); i++)
         {
-            if(Character.isAlphabetic(str.charAt(i)))
+            if(Character.isAlphabetic(str.charAt(i))|| !Character.isDigit(str.charAt(i)))
             {
               return false;
               
