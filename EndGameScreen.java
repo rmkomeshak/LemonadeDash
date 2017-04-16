@@ -69,8 +69,7 @@ public class EndGameScreen extends Node
         Text incomeValue = formatText(Double.toString(ui.getMoney()), "Calibri", 20, 300, 97);
         Text expensesValue = formatText(Double.toString(ui.getExpenses()), "Calibri", 20, 312, 107);
         
-        double profit = (ui.getIncome()) - (ui.getExpenses()));
-        
+        double profit = (ui.getIncome() - ui.getExpenses());
         Text profitValue = formatText(Double.toString(profit), "Calibri", 20, 275, 117);
         
 
