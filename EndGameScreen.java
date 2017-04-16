@@ -65,10 +65,13 @@ public class EndGameScreen extends Node
         Text expensesText = formatText("Expenses:", "Calibri", 27, 200, 130);
         Text profitText = formatText("Profit:", "Calibri", 27, 200, 140);
         
-        Text scoreValue = formatText("Temp", "Calibri", 20, 70, -21);
-        Text incomeValue = formatText(Double.toString(ui.getMoney()) + " Temp", "Calibri", 20, 300, 97);
-        Text expensesValue = formatText("Temp", "Calibri", 20, 312, 107);
-        Text profitValue = formatText("Temp", "Calibri", 20, 275, 117);
+        Text scoreValue = formatText(Double.toString(ui.getScore()), "Calibri", 20, 70, -21);
+        Text incomeValue = formatText(Double.toString(ui.getMoney()), "Calibri", 20, 300, 97);
+        Text expensesValue = formatText(Double.toString(ui.getExpenses()), "Calibri", 20, 312, 107);
+        
+        double profit = (ui.getIncome()) - (ui.getExpenses()));
+        
+        Text profitValue = formatText(Double.toString(profit), "Calibri", 20, 275, 117);
         
 
         HBox income_box = new HBox();
@@ -130,7 +133,7 @@ public class EndGameScreen extends Node
     
      public void drawButtons()
      {
-        Button end_game = new Button ("Begin Next Day");
+        Button end_game = new Button ("Return To Menu");
        // begin_next_day.setTranslateX(-25);
         end_game.setTranslateY(200);
         
