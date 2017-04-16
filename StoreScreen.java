@@ -27,6 +27,7 @@ import javafx.scene.media.MediaPlayer;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import java.util.Random;
+import static javafx.scene.media.MediaPlayer.INDEFINITE;
 
 /**
  *
@@ -73,16 +74,17 @@ public class StoreScreen extends Screen{
         
         //Added the music
         
-        String musicFile = "opening.wav";
+    //Opening music 
         
+        String musicFile = "opening.wav";
+        int s= INDEFINITE;
         Media sound= new Media(new File(musicFile).toURI().toString());
         
         MediaPlayer mp= new MediaPlayer(sound);
         
-        mp.setVolume(5);
-        
+        mp.setVolume(0.5f);
+        mp.setCycleCount(s);
         mp.play();
-        
         
 
     }
@@ -164,7 +166,7 @@ public class StoreScreen extends Screen{
         
         next.setTranslateY(-100);
         next.setOnAction(e->{
-            ScreenSwapper.getInstance().setState(ScreenSwapper.STATE.PAUSE);
+            ScreenSwapper.getInstance().setState(ScreenSwapper.STATE.RECIPE);
         });
         //TODO: LIMIT INPUT: NO CHARACTERS, NO STRINGS, NO NEGATIVES 
         buy.setOnAction(e -> {

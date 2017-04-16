@@ -11,6 +11,7 @@ import com.sun.javafx.geom.transform.BaseTransform;
 import com.sun.javafx.jmx.MXNodeAlgorithm;
 import com.sun.javafx.jmx.MXNodeAlgorithmContext;
 import com.sun.javafx.sg.prism.NGNode;
+import java.io.File;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
@@ -20,6 +21,9 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import static javafx.scene.media.MediaPlayer.INDEFINITE;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
@@ -37,12 +41,13 @@ public class RecipeScreen extends Screen{
     TextField cups;
     TextField ice;
     TextField priceCup;
+    
+    
         
     
     VBox corner_info = new VBox();
     //Text title = new Text("RECIPE");
-    
-    
+      
     
     public RecipeScreen(){
         super();
@@ -58,6 +63,18 @@ public class RecipeScreen extends Screen{
         drawButtons();
         
         recipe.getChildren().add(layout);
+        
+         //Opening music 
+        
+        String musicFile = "opening.wav";
+        int s= INDEFINITE;
+        Media sound= new Media(new File(musicFile).toURI().toString());
+        
+        MediaPlayer mp= new MediaPlayer(sound);
+        
+        mp.setVolume(0.5f);
+        mp.setCycleCount(s);
+        mp.play();
     }
     
     public Pane initScreen(){
