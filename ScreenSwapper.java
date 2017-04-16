@@ -26,7 +26,7 @@ public class ScreenSwapper {
         mainMenu = new MainMenuScreen().initScreen();
         options = new OptionsScreen().initScreen();
         leaderboard = new LeaderboardScreen().initScreen();
-        game = new GameScreen().initScreen();
+        //game = new GameScreen().initScreen();
         current_screen = mainMenu;
     }
     
@@ -47,6 +47,10 @@ public class ScreenSwapper {
     
     public void setState(STATE s){
         state = s;
+    }
+    
+    public void startGame(){
+        game = new GameScreen().initScreen();
     }
     
     public STATE getState(){

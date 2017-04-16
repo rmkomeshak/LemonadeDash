@@ -11,7 +11,7 @@ import com.sun.javafx.geom.transform.BaseTransform;
 import com.sun.javafx.jmx.MXNodeAlgorithm;
 import com.sun.javafx.jmx.MXNodeAlgorithmContext;
 import com.sun.javafx.sg.prism.NGNode;
-import java.io.File;
+import java.text.DecimalFormat;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
@@ -22,12 +22,9 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
-import java.util.Random;
-import static javafx.scene.media.MediaPlayer.INDEFINITE;
+
 
 /**
  *
@@ -42,12 +39,13 @@ public class StoreScreen extends Screen{
     private VBox corner_info = new VBox();
     private ImageView title = new ImageView();
     private TextField cup_amt, lemon_amt, ice_amt, sugar_amt;
-    Text cups_owned, ice_owned, sugar_owned, lemons_owned, money, weather_val;
+    Text cups_owned, ice_owned, sugar_owned, lemons_owned, money;
+    DecimalFormat df = new DecimalFormat("0.00##");
     
     double cup_price = 0.1;
     double lemon_price = 0.5;
-    double sugar_price = 1;
-    double ice_price = 0.05;
+    double sugar_price = 0.5;
+    double ice_price = 0.01;
     
     int cup_input, lemon_input, sugar_input, ice_input;
     //Text title = new Text("STORE");
@@ -71,24 +69,8 @@ public class StoreScreen extends Screen{
         drawButtons();
         
         store.getChildren().add(layout);
-        
-        //Added the music
-        
-    //Opening music 
-        
-        String musicFile = "opening.wav";
-        int s= INDEFINITE;
-        Media sound= new Media(new File(musicFile).toURI().toString());
-        
-        MediaPlayer mp= new MediaPlayer(sound);
-        
-        mp.setVolume(0.5f);
-        mp.setCycleCount(s);
-        mp.play();
-        
-
     }
-   
+    
     public Pane initScreen(){
         return store;
     }
@@ -96,9 +78,6 @@ public class StoreScreen extends Screen{
     public void drawText(){
         title.setTranslateY(50);
         //title.setFont(Font.font("Calibri", 50));
-    
-     
-    
         
         Text subtitle1 = formatText("Owned", 25, 0, 100);
         Text subtitle2 = formatText("Purchase", 25, 0, 100);
@@ -120,8 +99,8 @@ public class StoreScreen extends Screen{
         
         Text cup_cost = formatText("  Cups ($0.10/each)", 15, 100, 120);
         Text lemon_cost = formatText("  Lemons ($0.50/each)", 15, 100, 120);
-        Text sugar_cost = formatText("  Sugar ($1.00/each)", 15, 100, 120);
-        Text ice_cost = formatText("  Ice ($0.05/each)", 15, 100, 120);
+        Text sugar_cost = formatText("  Sugar ($0.50/each)", 15, 100, 120);
+        Text ice_cost = formatText("  Ice ($0.01/each)", 15, 100, 120);
         
         
         cups_purchase.getChildren().addAll(cup_amt, cup_cost);
@@ -130,20 +109,13 @@ public class StoreScreen extends Screen{
         ice_purchase.getChildren().addAll(ice_amt, ice_cost);
         
         
-        money = formatText(("Money: $" + ui.getMoney()), 15, -350, 0);
-        weather_val = formatText(("Weather: " + ui.generateWeather()), 15, -355, 0);
-         
-      
+        money = formatText(("Money: $" + df.format(ui.getMoney())), 15, -350, 0);
         
         owned.getChildren().addAll(subtitle1, cups_owned, lemons_owned, sugar_owned, ice_owned);
         purchase.getChildren().addAll(subtitle2, cups_purchase, lemons_purchase, sugar_purchase, ice_purchase);
         
         total.getChildren().addAll(owned, purchase);
-        layout.getChildren().addAll(title, total, money, weather_val);
-        
-        
-        
- 
+        layout.getChildren().addAll(title, total, money);
     }
     
     public void drawButtons(){
@@ -151,18 +123,8 @@ public class StoreScreen extends Screen{
         Button next = new Button("Next");
         buy.setId("record-sales");
         buy.setTranslateY(150);
-        
-       
         purchase.getChildren().add(buy);
-       
-        /*if( cup_input != 0 && lemon_input != 0 && ice_input != 0 && sugar_input!=0)
-        {
-            
-        }
-        */
-        
         layout.getChildren().add(next);
-       
         
         next.setTranslateY(-100);
         next.setOnAction(e->{
@@ -217,15 +179,10 @@ public class StoreScreen extends Screen{
             updateMoney();
                 
         });
-        
-   
     }
     
-    
-    
-    
     public void updateMoney(){
-        money.setText("Money: $" + ui.getMoney());
+        money.setText("Money: $" + df.format(ui.getMoney()));
     }
     
     public void updateCups(){
@@ -243,7 +200,8 @@ public class StoreScreen extends Screen{
     public void updateSugar(){
         sugar_owned.setText(ui.getSugar() + " Sugar");
     }
-   
+    
+    //Does not allow the user to continue if negative values are inputted 
     
        //Does not allow the user to continue if negative values are inputted or characters/ special characters  are inputted
     
