@@ -10,19 +10,31 @@ package lemonadedash;
  *
  * @author Ryan
  */
+
+import java.util.Random;
+
+
 public class UserInventory {
     private int cups, lemons, ice, sugar, day, price;
     private int recipe_lemons, recipe_ice, recipe_sugar;
+    private int displayScore;
+    private double income, expenses;
+    private String weatherStored;
     private String name;
     private double money;
-    private static volatile UserInventory instance;
+    public static volatile UserInventory instance;
 
-    private UserInventory(){
+    UserInventory(){
         cups = 0;
         lemons = 0;
         ice = 0;
         sugar = 0;
         money = 30;
+	income = 0;
+	expenses = 0;
+	day = 1;
+	displayScore = 0;
+	weatherStored = "";
         recipe_lemons = 0;
         recipe_sugar = 0;
         recipe_ice = 0;
@@ -81,6 +93,24 @@ public class UserInventory {
     public void setPrice(int p){
         price = p;
     }
+	
+    public void setDisplayScore(int s){
+	    displayScore = s;
+    }
+	
+    
+	
+    public void setIncome(double i){
+	    income = i;
+    }
+	
+    public void setExpenses(double e){
+	    expenses = e;
+    }
+	
+    public void setWeatherStored(String s){
+	    weatherStored = s;
+    }
     
     public int getCups(){
         return cups;
@@ -125,9 +155,26 @@ public class UserInventory {
     public int getPrice(){
         return price;
     }
+	
+    public int getDisplayScore(){
+	    return displayScore;
+    }
+	
+   
+    public double getIncome(){
+	    return income;
+    }
+	
+    public double getExpenses(){
+	    return expenses;
+    }
+	
+    public String getWeatherStored(){
+	    return weatherStored;
+    }
     
     
-    //RECIPE STUFF: PROBABLY GONNA MOVE SOME TO THE TOP BUT STILL WORKING ON IT
+   //RECIPE STUFF: PROBABLY GONNA MOVE SOME TO THE TOP BUT STILL WORKING ON IT
     int o_lem, o_ice, o_sug, o_price;
     int diff_lem, diff_ice, diff_sug, diff_price;
     int cups_per_pitcher = 5;
@@ -207,5 +254,42 @@ public class UserInventory {
         return score;
     }
     
+
+    //Method to generate the random weather to be called within the store screen and recipe screen
+   
+    
+    public String generateWeather()
+    {
+                
+             
+    Random rand= new Random();
+    
+    int weather= rand.nextInt(4);
+ 
+    switch (weather) 
+  {
+        case 0:
+        return "Rainy"; 
+        
+        case 1:
+        return "Windy";
+        
+      
+        case 2:
+        return "Cloudy";   
+       
+        case 3:
+        return "Sunny";
+       
+	
+        	
+  }
+    
+    setWeatherStored(Integer.toString(weather));
+    return Integer.toString(weather);
+    
+    }
+    
     
 }
+
