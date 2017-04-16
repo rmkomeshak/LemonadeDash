@@ -17,7 +17,7 @@ import java.util.Random;
 public class UserInventory {
     private int cups, lemons, ice, sugar, day, price;
     private int recipe_lemons, recipe_ice, recipe_sugar;
-    private int score, day;
+    private int displayScore, day;
     private double income, expenses;
     private String weatherStored;
     private String name;
@@ -33,7 +33,7 @@ public class UserInventory {
 	income = 0;
 	expenses = 0;
 	day = 1;
-	score = 0;
+	displayScore = 0;
 	weatherStored = "";
         recipe_lemons = 0;
         recipe_sugar = 0;
@@ -94,8 +94,8 @@ public class UserInventory {
         price = p;
     }
 	
-    public void setScore(int s){
-	    score = s;
+    public void setDisplayScore(int s){
+	    displayScore = s;
     }
 	
     public void setDay(int d){
@@ -158,8 +158,8 @@ public class UserInventory {
         return price;
     }
 	
-    public int getScore(){
-	    return score;
+    public int getDisplayScore(){
+	    return displayScore;
     }
 	
     public int getDay(){
