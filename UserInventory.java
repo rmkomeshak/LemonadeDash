@@ -17,6 +17,9 @@ import java.util.Random;
 public class UserInventory {
     private int cups, lemons, ice, sugar, day, price;
     private int recipe_lemons, recipe_ice, recipe_sugar;
+    private int score, day;
+    private double income, expenses;
+    private String weatherStored;
     private String name;
     private double money = 20;
     private static volatile UserInventory instance;
@@ -27,6 +30,11 @@ public class UserInventory {
         ice = 0;
         sugar = 0;
         money = 20;
+	income = 0;
+	expenses = 0;
+	day = 1;
+	score = 0;
+	weatherStored = "";
         recipe_lemons = 0;
         recipe_sugar = 0;
         recipe_ice = 0;
@@ -85,6 +93,26 @@ public class UserInventory {
     public void setPrice(int p){
         price = p;
     }
+	
+    public void setScore(int s){
+	    score = s;
+    }
+	
+    public void setDay(int d){
+	    day = d;
+    }
+	
+    public void setIncome(double i){
+	    income = i;
+    }
+	
+    public void setExpenses(double e){
+	    expenses = e;
+    }
+	
+    public void setWeatherStored(String w){
+	    weatherStored = s;
+    }
     
     public int getCups(){
         return cups;
@@ -128,6 +156,26 @@ public class UserInventory {
     
     public int getPrice(){
         return price;
+    }
+	
+    public int getScore(){
+	    return score;
+    }
+	
+    public int getDay(){
+	    return day;
+    }
+	
+    public double getIncome(){
+	    return income;
+    }
+	
+    public double getExpenses(){
+	    return expenses;
+    }
+	
+    public String getWeatherStored(){
+	    return weatherStored;
     }
     
     
@@ -238,6 +286,7 @@ public class UserInventory {
         	
   }
     
+    setWeatherStored(Integer.toString(weather);
     return Integer.toString(weather);
     
     }
