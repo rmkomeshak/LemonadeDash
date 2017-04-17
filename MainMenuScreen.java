@@ -5,6 +5,7 @@ package lemonadedash;
  * and open the template in the editor.
  */
 
+import java.io.File;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -18,6 +19,9 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import static javafx.scene.media.MediaPlayer.INDEFINITE;
 import javafx.scene.text.Text;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -50,6 +54,18 @@ public class MainMenuScreen extends Screen{
         gpane.setVgap(10);
         gpane.setPadding(new Insets(0, 10, 0, 10));
         ImageView title = new ImageView(new Image("file:resource/image/main-menu-title.png", 600, 600, true, true));
+         
+        //Opening music 
+        
+        String musicFile = "opening.wav";
+        int s= INDEFINITE;
+        Media sound= new Media(new File(musicFile).toURI().toString());
+        
+        MediaPlayer mp= new MediaPlayer(sound);
+        
+        mp.setVolume(0.5f);
+        mp.setCycleCount(s);
+        mp.play();
         
         //welcome = new Label("Welcome to Lemonade Dash!");
         newGame = new Button("New Game");
