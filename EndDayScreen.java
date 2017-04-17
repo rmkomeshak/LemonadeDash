@@ -10,6 +10,7 @@ import com.sun.javafx.geom.transform.BaseTransform;
 import com.sun.javafx.jmx.MXNodeAlgorithm;
 import com.sun.javafx.jmx.MXNodeAlgorithmContext;
 import com.sun.javafx.sg.prism.NGNode;
+import java.text.DecimalFormat;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
@@ -20,21 +21,23 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.geometry.Pos;
+import lemonadedash.ScreenSwapper.STATE;
 
 /**
  *
  * @author Colin
  */
-public class EndDayScreen extends Node
+public class EndDayScreen extends Screen
 {
    
     Pane report = new Pane();
     VBox layout = new VBox();
     VBox purchase = new VBox();  
+    Button begin_next_day;
     
     VBox corner_info = new VBox();
-    
-    UserInventory ui = new UserInventory();
+    DecimalFormat df = new DecimalFormat("0.00##");
+    Button main_menu = new Button("Main Menu");
     
     Text title = new Text("END OF DAY REPORT");
     
@@ -47,13 +50,33 @@ public class EndDayScreen extends Node
         layout.setPrefSize(800,600);
         layout.setAlignment(Pos.TOP_CENTER);
     
+        main_menu.setTranslateX(75);
+        main_menu.setTranslateY(120);
         
         purchase.setPrefSize(800, 600);
         purchase.setAlignment(Pos.TOP_CENTER);
-        
+        begin_next_day = new Button("Begin Next Day");
+         main_menu.setOnAction(e->{
+             ui.resetResources();
+             ScreenSwapper.getInstance().goStore();
+             ScreenSwapper.getInstance().setState(STATE.START);
+         });
+         
+         System.out.println(ui.getDay());
+         if(ui.getDay() > 1){
+            main_menu.setVisible(false);
+            begin_next_day.setVisible(true);
+        }
+        if(ui.getDay() == 1){
+            begin_next_day.setVisible(false);
+            main_menu.setVisible(true);
+        }
+         
+         
         drawText();
         drawButtons();
         
+       
         report.getChildren().add(layout);
         
         
@@ -65,27 +88,26 @@ public class EndDayScreen extends Node
     
     public void drawText(){
         title.setTranslateY(50);
+        title.setTranslateX(200);
         title.setFont(Font.font("Calibri", 50));
         
-        Text scoreText = formatText("Score:", "Calibri", 25, 0, 0);
-        Text incomeText = formatText("Income: ", "Calibri",27, 200, 120);
-        Text expensesText = formatText("Expenses:", "Calibri", 27, 200, 130);
-        Text profitText = formatText("Profit:", "Calibri", 27, 200, 140);
+
+        Text incomeText = formatText("Income: ", "Calibri",27, 400, 120);
+        Text expensesText = formatText("Expenses:", "Calibri", 27, 400, 130);
+        Text profitText = formatText("Profit:", "Calibri", 27, 400, 140);
         
-        Text scoreValue = formatText(Double.toString(ui.getScore()), "Calibri", 20, 70, -21);
-        Text incomeValue = formatText(Double.toString(ui.getIncome()), "Calibri", 20, 300, 97);
-        Text expensesValue = formatText(Double.toString(ui.getExpenses()), "Calibri", 20, 312, 107);
+        Text incomeValue = formatText(Double.toString(ui.getIncome()), "Calibri", 20, 520, 97);
+        Text expensesValue = formatText(Double.toString(ui.getExpenses()), "Calibri", 20, 520, 107);
         
         double profit = (ui.getIncome() - ui.getExpenses());
-        Text profitValue = formatText(Double.toString(profit), "Calibri", 20, 275, 117);
+        Text profitValue = formatText(Double.toString(profit), "Calibri", 20, 520, 117);
         
-        Text dayText = formatText("Day:", "Calibri", 25, 0, 150);
-        Text moneyText = formatText("Money:", "Calibri", 25, 0, 150);
-        Text weatherText = formatText("Weather:", "Calibri", 25, 0, 150);
-        
-        Text dayValue = formatText("Temp", "Calibri", 25, 51, 125);
-        Text moneyValue = formatText("Temp", "Calibri", 25, 80, 125);
-        Text weatherValue = formatText("Temp", "Calibri", 25, 100, 125);
+        Text dayText = formatText("Day:", "Calibri", 25, 400, 150);
+        Text moneyText = formatText("Money:", "Calibri", 25, 400, 150);
+        Text weatherText = formatText("Weather:", "Calibri", 25, 400, 150);
+        Text dayValue = formatText(String.valueOf(ui.getDay()), "Calibri", 25, 520, 125);
+        Text moneyValue = formatText("$" + df.format(ui.getMoney()), "Calibri", 25, 520, 125);
+        Text weatherValue = formatText("Sunny", "Calibri", 25, 520, 125);
          
         
         HBox income_box = new HBox();
@@ -96,9 +118,6 @@ public class EndDayScreen extends Node
         
         HBox profit_box = new HBox();
         profit_box.getChildren().addAll(profitText);
-        
-        HBox score_box = new HBox();
-        score_box.getChildren().addAll(scoreText);
         
         HBox day_box = new HBox();
         day_box.getChildren().addAll(dayText);
@@ -119,8 +138,6 @@ public class EndDayScreen extends Node
         HBox profit_value_box = new HBox();
         profit_value_box.getChildren().addAll(profitValue);
         
-         HBox score_value_box = new HBox();
-         score_value_box.getChildren().addAll(scoreValue);
          
          HBox day_value_box = new HBox();
          day_value_box.getChildren().addAll(dayValue);
@@ -134,7 +151,7 @@ public class EndDayScreen extends Node
         
         
         
-        purchase.getChildren().addAll(score_box, score_value_box, income_box, income_value_box, expenses_box,
+        purchase.getChildren().addAll(income_box, income_value_box, expenses_box,
                 expenses_value_box, profit_box, profit_value_box, day_box, day_value_box, money_box, money_value_box,
                 weather_box, weather_value_box);
         
@@ -165,24 +182,26 @@ public class EndDayScreen extends Node
     
      public void drawButtons()
      {
-        Button begin_next_day = new Button ("Begin Next Day");
-        begin_next_day.setTranslateX(-25);
-        begin_next_day.setTranslateY(100);
+        begin_next_day.setTranslateX(75);
+        begin_next_day.setTranslateY(150);
         
         begin_next_day.setOnAction(e-> {
             
             ui.setIncome(0.0);
-            ui.setDay(ui.getDay() + 1);
+            ui.setDay(ui.getDay() - 1);
             ui.setExpenses(0.0);
-            
+                ScreenSwapper.getInstance().goStore();
+                ScreenSwapper.getInstance().setState(STATE.STORE);
+                
+                
             /*(if ui.getDay() < ui.getDayLimit()){
                 ScreenSwapper.getInstance().setState(ScreenSwapper.STATE.STORE);
             }*/
              
         });
         
-        
         purchase.getChildren().add(begin_next_day);
+        purchase.getChildren().add(main_menu);
      }
     
     

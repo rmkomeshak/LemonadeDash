@@ -49,6 +49,8 @@ public class LemonadeDash extends Application {
                     case GAME:
                         scene.setRoot(ss.game);
                         break;
+                    case STATS:
+                        scene.setRoot(ss.endday);
                     default:
                 }
             }

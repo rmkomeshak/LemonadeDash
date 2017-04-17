@@ -54,18 +54,6 @@ public class MainMenuScreen extends Screen{
         gpane.setVgap(10);
         gpane.setPadding(new Insets(0, 10, 0, 10));
         ImageView title = new ImageView(new Image("file:resource/image/main-menu-title.png", 600, 600, true, true));
-         
-        //Opening music 
-        
-        String musicFile = "opening.wav";
-        int s= INDEFINITE;
-        Media sound= new Media(new File(musicFile).toURI().toString());
-        
-        MediaPlayer mp= new MediaPlayer(sound);
-        
-        mp.setVolume(0.5f);
-        mp.setCycleCount(s);
-        mp.play();
         
         //welcome = new Label("Welcome to Lemonade Dash!");
         newGame = new Button("New Game");

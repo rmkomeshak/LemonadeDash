@@ -38,6 +38,7 @@ public class StoreScreen extends Screen{
     private HBox total = new HBox();
     private VBox corner_info = new VBox();
     private ImageView title = new ImageView();
+    double expenses = 0;
     private TextField cup_amt, lemon_amt, ice_amt, sugar_amt;
     Text cups_owned, ice_owned, sugar_owned, lemons_owned, money;
     DecimalFormat df = new DecimalFormat("0.00##");
@@ -58,6 +59,7 @@ public class StoreScreen extends Screen{
         title.setImage(new Image("file:resource/image/store-title.png", 200, 100, true, true));
         layout.setPrefSize(Scaling.windowWidth(), Scaling.windowHeight());
         layout.setAlignment(Pos.TOP_CENTER);
+        ui.setExpenses(0);
         
         owned.setPrefSize(Scaling.windowWidth(), Scaling.windowHeight());
         owned.setAlignment(Pos.TOP_CENTER);
@@ -132,6 +134,8 @@ public class StoreScreen extends Screen{
         });
         //TODO: LIMIT INPUT: NO CHARACTERS, NO STRINGS, NO NEGATIVES 
         buy.setOnAction(e -> {
+            
+            
             System.out.println(ui.getName());
             if(!cup_amt.getText().isEmpty() && isNumericCharValid(cup_amt.getText()))
             
@@ -139,6 +143,7 @@ public class StoreScreen extends Screen{
                 cup_input = Integer.valueOf(cup_amt.getText());
                 if((cup_input * cup_price) <= ui.getMoney() && cup_input>=0){
                     ui.setCups(ui.getCups() + cup_input);
+                    //ui.setExpenses(cup_input * cup_price);
                     ui.setMoney(ui.getMoney() - (cup_input * cup_price));
                     updateCups();
                 }
@@ -149,6 +154,7 @@ public class StoreScreen extends Screen{
                 lemon_input = Integer.valueOf(lemon_amt.getText());
                 if((lemon_input * lemon_price) <= ui.getMoney()&&lemon_input>=0){
                     ui.setLemons(ui.getLemons() + lemon_input);
+                    //ui.setExpenses(lemon_input * lemon_price);
                     ui.setMoney(ui.getMoney() - (lemon_input * lemon_price));
                     updateLemons();
                 }
@@ -158,6 +164,7 @@ public class StoreScreen extends Screen{
                 ice_input = Integer.valueOf(ice_amt.getText());
                 if((ice_input * ice_price) <= ui.getMoney() &&ice_input>=0){
                     ui.setIce(ui.getIce() + ice_input);
+                    //ui.setExpenses(ice_input * ice_price);
                     ui.setMoney(ui.getMoney() - (ice_input * ice_price));
                     updateIce();
                 }
@@ -166,6 +173,7 @@ public class StoreScreen extends Screen{
                 sugar_input = Integer.valueOf(sugar_amt.getText());
                 if((sugar_input * sugar_price) <= ui.getMoney()&&sugar_input>=0){
                     ui.setSugar(ui.getSugar() + sugar_input);
+                    //ui.setExpenses(sugar_input * sugar_price);
                     ui.setMoney(ui.getMoney() - (sugar_input * sugar_price));
                     updateSugar();
                 }

@@ -32,7 +32,7 @@ public class UserInventory {
         money = 30;
 	income = 0;
 	expenses = 0;
-	day = 1;
+	day = 0;
 	displayScore = 0;
 	weatherStored = "";
         recipe_lemons = 0;
@@ -173,6 +173,19 @@ public class UserInventory {
 	    return weatherStored;
     }
     
+    public void resetResources(){
+        lemons = 0;
+        ice = 0;
+        sugar = 0;
+        cups = 0;
+        money = 30;
+        recipe_lemons = 0;
+        recipe_sugar = 0;
+        recipe_ice = 0;
+        price = 0;
+        
+    }
+    
     
    //RECIPE STUFF: PROBABLY GONNA MOVE SOME TO THE TOP BUT STILL WORKING ON IT
     int o_lem, o_ice, o_sug, o_price;
@@ -243,11 +256,8 @@ public class UserInventory {
         weather_factor = 100 * weather;
         
         score = inventory_factor * (recipe_factor + (weather_factor));
-        System.out.println("price: " + price_factor);
-        System.out.println("recipe: "+ recipe_factor);
-        System.out.println("inventory: " + inventory_factor);
-        System.out.println("weather: " + weather_factor);
-        System.out.println(score);
+        if(price > 250)
+            score = 0;
     }
     
     public int getScore(){

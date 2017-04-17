@@ -15,7 +15,7 @@ import javafx.scene.layout.Pane;
  */
 public class ScreenSwapper {
     Pane current_screen;
-    Pane store, recipe, setup, mainMenu, options, leaderboard, game;
+    Pane store, recipe, setup, mainMenu, options, leaderboard, game, endday;
     STATE state = STATE.START;
     private static volatile ScreenSwapper instance;
     
@@ -51,6 +51,14 @@ public class ScreenSwapper {
     
     public void startGame(){
         game = new GameScreen().initScreen();
+    }
+    
+    public void goStore(){
+        store = new StoreScreen().initScreen();
+    }
+    
+    public void goEndDay(){
+        endday = new EndDayScreen().initScreen();
     }
     
     public STATE getState(){

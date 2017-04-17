@@ -63,18 +63,6 @@ public class RecipeScreen extends Screen{
         drawButtons();
         
         recipe.getChildren().add(layout);
-        
-         //Opening music 
-        
-        String musicFile = "opening.wav";
-        int s= INDEFINITE;
-        Media sound= new Media(new File(musicFile).toURI().toString());
-        
-        MediaPlayer mp= new MediaPlayer(sound);
-        
-        mp.setVolume(0.5f);
-        mp.setCycleCount(s);
-        mp.play();
     }
     
     public Pane initScreen(){
@@ -150,7 +138,7 @@ public class RecipeScreen extends Screen{
                ui.generateOptimalRecipe();
                ui.calculateDifference();
                ui.generateScore();
-               
+               ScreenSwapper.getInstance().startGame();
                ScreenSwapper.getInstance().setState(ScreenSwapper.STATE.GAME);
            }
        });
